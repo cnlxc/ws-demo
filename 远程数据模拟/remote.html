@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>WebSocket Examples</title>
+</head>
+<body>
+
+    <script>
+            ws = new WebSocket('ws://localhost:8080//websocket/22')
+            ws.onmessage = function(event){
+                console.log('服务器消息' + event.data);
+                document.getElementById('response').innerText = event.data;
+            }
+            ws.onclose = function(){
+                ws.close();
+                console.log('websocket 关闭');
+            }
+            function sendData(){
+                
+                ws.send(document.getElementById('message').value);
+            }
+    </script>
+    <div>
+        <input id="message"/>
+        <button onclick="sendData()">send</button>
+        <div id="response" style="background-color: brown;"></div>
+    </div>
+</body>
+</html>
